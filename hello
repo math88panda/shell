@@ -1,0 +1,8 @@
+#!/bin/bash
+
+name=''
+test -z "$1" && name="Matheus" || name="$1"
+
+printf "Hello %s, welcome to shell programming!.\n" "$name"
+
+exit 0

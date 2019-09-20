@@ -1,0 +1,6 @@
+#!/usr/bin/bash
+#Task: writes a script that creates a directory called bpl inside $HOME. Populate this directory with
+#two sub-directories, bin and scripts
+
+#using expansion to create the 2 directories
+cd "$HOME" && mkdir {bin,scripts}

@@ -1,0 +1,18 @@
+#!/usr/bin/bash
+
+#Task: write a script to create a "Hello world" script, hw, in $HOME/bpl/bin/; make it
+#executable; ang then execute it.
+
+cat > hello.sh <<- endOfScript
+#!/usr/bin/bash
+#Task: hello world script.
+
+printf "Hello world!\n"
+endOfScript
+
+chmod +x hello.sh
+mv -v hello.sh "$HOME/bpl/bin/"
+
+bash "$HOME/bpl/bin/hello.sh"
+
+exit 0
