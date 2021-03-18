@@ -1,0 +1,9 @@
+function gen_ssh_key() {
+  read -p "Enter email: " email
+  if [ -z "$email" ]; then
+    printf "You must use an email..!\n" >&2
+    exit 1
+  else
+    ssh-keygen -t ed25519 -C "$email" 
+  fi
+}
