@@ -1,0 +1,55 @@
+#!/usr/bin/bash
+
+# date: 2021/04/16
+# author: MathGod
+# description: download an entire website or webpage from the internet
+
+function display_auto() {
+  printf "=================================\n"
+  printf "| Usage:  downweb [-h] | downweb |\n"
+  printf "| URL:    www.alphacoders.com    |\n"
+  printf "| DOMAIN: alphacoders.com        |\n"
+  printf "=================================\n"
+}
+
+display_auto
+
+[ -n "$1" ] && \
+  case "$1" in
+    -h) printf "Examples:\n%s\n%s\n" "URL: www.alphacoders.com" "DOMAIN: alphacoders.com"; exit 1;;
+    *) ;;
+  esac
+
+read -p "Type URL of the website: " url
+read -p "Type DOMAIN of the website: " domain
+
+[[ -n "$domain" && "$domain" =~ ^[[:alnum:]]+\.[[:alpha:]]{3}$ ]] || \
+  { printf "Domain name is of wrong type!.\n" 2>&1; exit 1; }
+
+printf "Url: %s\n" "$url"
+
+if [[ -n "$url" && "$url" =~ ^[w]{3}\.[[:alnum:]]+\.[[:alpha:]]{3}$ ]]
+then
+  printf "Initiating download...\n"
+  sleep 1
+  wget --recursive \
+        --no-clobber \
+        --page-requisites \
+        --html-extension \
+        --convert-links \
+        --restrict-file-names=windows \
+        --domains "$domain" \
+        --no-parent \
+        "$url"
+  if [ $? -eq 0 ]
+  then
+    printf "Task completed, good luck!.\n"
+    exit 0
+  else
+    printf "Something might have happened, check the output!.\n" 2>&1
+    exit 1
+  fi
+else
+  printf "Wrong type of input, fix that!.\n" 2>&1
+  exit 1
+fi
